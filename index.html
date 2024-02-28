@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+
+    .alert {
+      background-color: #ffc107;
+      color: #856404;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="alert">
+    You will be redirected to <a href=""></a> in 3 seconds.
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+  const main_url = 'appscomputer.site';
+
+  
+
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  const oc_version = urlParams.get('oc');
+
+  let route = urlParams.get('route');
+
+  if(!route){
+    route = '';
+  }
+
+  let subdomain = 'demo-oc3.';
+
+  if(oc_version == 4){
+    subdomain = 'demo-oc4.';
+  }else if(oc_version == 'main'){
+    subdomain = '';
+  }
+
+  function redirectTo(url, seconds) {
+    setTimeout(function () {
+    //  window.location.href = url;
+    }, seconds * 1000); 
+  }
+
+  const final_url = 'https://' + subdomain + main_url + '/' + route;
+
+  $('.alert a').html(final_url);
+
+  $('.alert a').attr('href', final_url);
+
+
+  redirectTo(final_url, 3);
+</script>
+
+</body>
+</html>
